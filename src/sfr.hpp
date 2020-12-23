@@ -2,6 +2,8 @@
 #define SFR_HPP_
 
 #include "mission_mode_type.enum"
+#include <stdint.h>
+#include <cstddef>
  
 namespace sfr{
     namespace gps{
@@ -23,8 +25,7 @@ namespace sfr{
     namespace rockblock{
         extern uint8_t tx_data;
         extern size_t tx_data_size;
-        extern uint8_t rx_data;
-        extern size_t rx_data_size;
+        extern uint8_t rx_buffer;
     }
 };
 

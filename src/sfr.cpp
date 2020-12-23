@@ -18,9 +18,8 @@ namespace sfr{
         bool take_photo = false;
     }
     namespace rockblock{
-        uint8_t tx_data[4] = {gps::altitude, photoresistor::covered, burnwire::on, camera::photo_taken}
-        size_t tx_data_size = 4;
-        uint8_t rx_data;
-        size_t rx_data_size;
+        uint8_t tx_data = {0};
+        size_t tx_data_size = 0;
+        uint8_t rx_buffer = 0;
     }
 }
