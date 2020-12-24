@@ -5,9 +5,12 @@ CameraControlTask::CameraControlTask():
         SD.begin(254);
         adaCam.begin();
         adaCam.setImageSize(VC0706_640x480);
+        
     }
 
 void CameraControlTask::execute(){
+    sfr::camera::take_photo = true;
+    
     if(sfr::camera::take_photo){
         adaCam.takePicture();
         

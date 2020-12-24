@@ -4,7 +4,7 @@ BurnwireControlTask::BurnwireControlTask(){
     pinMode(constants::burnwire::pin, OUTPUT);
 }
 
-void BurnwireControlTask::execute(){
+void BurnwireControlTask::execute(){    
     if(sfr::burnwire::on){
         digitalWrite(constants::burnwire::pin, HIGH);
     }

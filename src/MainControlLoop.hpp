@@ -16,7 +16,7 @@ class MainControlLoop{
         PhotoresistorMonitor photoresistor_monitor;
         UplinkMonitor uplink_monitor;
 
-        MissionManager mission_manager;
+        //MissionManager mission_manager;
 
         BurnwireControlTask burnwire_control_task;
         CameraControlTask camera_control_task;

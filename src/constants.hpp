@@ -9,11 +9,11 @@ namespace constants{
         constexpr int mand_deploy = 28000;
     }
     namespace photoresistor{
-        constexpr int pin = 0;
-        constexpr int light_val = 400;
+        constexpr int pin = 22;
+        constexpr int light_val = 4;
     }
     namespace burnwire{
-        constexpr int pin = 0;
+        constexpr int pin = 35;
     }
     namespace rockblock{
         constexpr int sleep_pin = 0;
