@@ -1,4 +1,5 @@
 #include "sfr.hpp"
+#include "constants.hpp"
  
 namespace sfr{
     namespace gps{
@@ -18,8 +19,9 @@ namespace sfr{
         bool take_photo = false;
     }
     namespace rockblock{
-        uint8_t tx_data = {0};
-        size_t tx_data_size = 0;
-        uint8_t rx_buffer = 0;
+        uint8_t send_buffer[constants::rockblock::send_buffer_size] = {gps::altitude, burnwire::on, camera::photo_taken};
+        uint8_t receive_buffer[constants::rockblock::receive_buffer_size] = {0};
+        size_t send_size = sizeof(send_buffer);
+        size_t receive_size = sizeof(receive_buffer);
     }
 }

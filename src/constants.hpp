@@ -18,7 +18,10 @@ namespace constants{
     namespace rockblock{
         constexpr int sleep_pin = 0;
         constexpr int baud = 19200;
-        constexpr size_t rx_buffer_size = 0;
+        constexpr uint16_t receive_buffer_size = 240;
+        constexpr uint16_t send_buffer_size = 300;
+        constexpr int command_size = 6;
+        constexpr int opcode_deploy = 1;
     }
 };
 
