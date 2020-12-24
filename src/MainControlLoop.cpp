@@ -13,6 +13,7 @@ MainControlLoop::MainControlLoop():
 void MainControlLoop::execute(){
     gps_monitor.execute();
     photoresistor_monitor.execute();
+    uplink_monitor.execute();
 
     mission_manager.execute();
 
