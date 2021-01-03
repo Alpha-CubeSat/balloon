@@ -16,12 +16,15 @@ namespace constants{
         constexpr int pin = 35;
     }
     namespace rockblock{
-        constexpr int sleep_pin = 0;
         constexpr int baud = 19200;
         constexpr uint16_t receive_buffer_size = 240;
         constexpr uint16_t send_buffer_size = 300;
         constexpr int command_size = 6;
         constexpr int opcode_deploy = 1;
+    }
+    namespace fault{
+        constexpr int rockblock_begin = 0;
+        constexpr int incorrect_command = 1;
     }
 };
 

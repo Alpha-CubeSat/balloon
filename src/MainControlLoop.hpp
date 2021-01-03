@@ -8,14 +8,14 @@
 #include "MissionManager.hpp"
 #include "BurnwireControlTask.hpp"
 #include "CameraControlTask.hpp"
-#include "UplinkMonitor.hpp"
+#include "RockblockControlTask.hpp"
 
 class MainControlLoop{
     protected:
+        RockblockControlTask rockblock_control_task;
         GPSMonitor gps_monitor;
         PhotoresistorMonitor photoresistor_monitor;
-        UplinkMonitor uplink_monitor;
-
+        
         //MissionManager mission_manager;
 
         BurnwireControlTask burnwire_control_task;

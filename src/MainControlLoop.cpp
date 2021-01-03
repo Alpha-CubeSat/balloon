@@ -11,9 +11,9 @@
 }*/
 
 MainControlLoop::MainControlLoop():
+    rockblock_control_task(),
     gps_monitor(Serial1),
-    photoresistor_monitor(),
-    uplink_monitor(),
+    photoresistor_monitor(), 
     burnwire_control_task(),
     camera_control_task(){
         delay(1000);
@@ -22,7 +22,7 @@ MainControlLoop::MainControlLoop():
 void MainControlLoop::execute(){
     gps_monitor.execute();
     photoresistor_monitor.execute();
-    uplink_monitor.execute();
+    rockblock_control_task.execute();
 
     //mission_manager.execute();
 

@@ -8,9 +8,7 @@ CameraControlTask::CameraControlTask():
         
     }
 
-void CameraControlTask::execute(){
-    sfr::camera::take_photo = true;
-    
+void CameraControlTask::execute(){    
     if(sfr::camera::take_photo){
         adaCam.takePicture();
         
