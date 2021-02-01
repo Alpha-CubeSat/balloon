@@ -1,14 +1,12 @@
 #include "GPSMonitor.hpp"
 
-GPSMonitor::GPSMonitor(HardwareSerial ser):
-    gps(),
-    hwSer(ser){
-    hwSer.begin(constants::gps::baud);
+GPSMonitor::GPSMonitor(){
+    Serial1.begin(constants::gps::baud);
 }
 
-void GPSMonitor::execute(){
-    if(hwSer.available() > 0){
-        gps.encode(hwSer.read());
-        sfr::gps::altitude = gps.altitude.feet();
-    }
+void GPSMonitor::execute(){  
+    while(Serial1.available() > 0){
+        gps.encode(Serial1.read());
+    } 
+    sfr::gps::altitude = gps.altitude.meters();
 }

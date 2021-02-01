@@ -1,16 +1,18 @@
 #ifndef GPS_MONITOR_HPP_
 #define GPS_MONITOR_HPP_
 
-#include <TinyGPS++.h>    
 #include "sfr.hpp"
 #include "constants.hpp"
+#include <Arduino.h> 
+#include <TinyGPS++.h>
 
 class GPSMonitor{
     public:
-        GPSMonitor(HardwareSerial ser);
+        GPSMonitor();
         void execute();
         TinyGPSPlus gps;
-        HardwareSerial hwSer;
+    private:
+        int num_commas = 0;
 };
 
 #endif
