@@ -1,0 +1,4 @@
+Test both of the temperature sensors, read from the photoresistor, turn the cameras off
+through the shutdown feature, triggering the burnwire to heat up and cut the nichrome wire,
+reading from the GPS, getting a location lock on the GPS, reading the signal quality from the
+RockBLOCK, and send and receive messages through the RockBLOCK.
