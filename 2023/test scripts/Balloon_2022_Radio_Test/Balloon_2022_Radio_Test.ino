@@ -1,6 +1,4 @@
-/*
-* Alpha Flight Hardware Acceptance Tests
-* Rockblock
+/* Rockblock
 * 
 * Test on breadboard with a Teesny 3.5 (test unit, not flight)
 * Follow electrical schematic to wire sensor to the Teensy
@@ -11,10 +9,13 @@
 *
 * Written by LJG March 13 2021
 */
- 
+#include <SoftwareSerial.h> 
 // Rockblock constants //
-#define RockblockSerial Serial7; //(RX:28.TX:29 on Teensey 4.1)
- 
+//#define RockblockSerial Serial7
+
+static const int TXPin = 29, RXPin =28;
+SoftwareSerial RockblockSerial(RXPin, TXPin);
+
 // Rockblock Global Variables
 int step = 0; //Variable to store where in send sequence
 uint8_t report[70] = {0}; //empty report to uplink

@@ -1,16 +1,20 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial RockblockSerial(28,29);
+SoftwareSerial RockblockSerial(29,28);
 
 void setup()
 {
-mySerial.begin(19200);
-Serial.begin(19200);
+RockblockSerial.begin(19200);
+Serial.begin(9600);
 }
 
 void loop()
 {
+ 
   if (RockblockSerial.available()){
     Serial.print(RockblockSerial.read());
+  }
+  else{
+    Serial.print("Rockblock Serial Unavaiable");
   }
 }
