@@ -13,7 +13,7 @@ void MissionManager::execute()
     switch (mode)
     {
     case mission_mode_type::standby:
-        dispatch_standby();
+        //dispatch_standby();
         break;
     case mission_mode_type::high_altitude:
         dispatch_high_altitude();
