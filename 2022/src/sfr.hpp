@@ -66,6 +66,7 @@ namespace sfr
     namespace rockblock
     {
         extern unsigned long last_communication;
+        extern bool sleep_mode; //ADDED
         extern bool last_downlink_normal;
         extern int camera_commands[99][constants::rockblock::command_len];
         extern int camera_max_fragments[99];

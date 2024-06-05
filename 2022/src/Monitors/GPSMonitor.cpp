@@ -1,29 +1,38 @@
-#include "GPSMonitor.hpp"
+#include "GPSMonitor.hpp" //try commenting out
+#include <SoftwareSerial.h>
 
 TinyGPS gps;
 
 GPSMonitor::GPSMonitor(unsigned int offset) : TimedControlTask<void>(offset)
 {
-    Serial3.begin(constants::gps::baud);
-    delay(1000);
 
-    Serial3.write((unsigned char *)&constants::gps::SetCfgNav5, sizeof(constants::gps::SetCfgNav5));
-    delay(1000);
+
+    //delay(1000);
 }
 
 void GPSMonitor::execute()
 {
+    //SoftwareSerial ss(constants::gps::RXPin, constants::gps::TXPin);
+        /*
+        while (Serial2.available())
+        {
+            //Serial.print("Serial2 Avaiable");
+        }
+        */
+
     for (unsigned long start = millis(); millis() - start < 1000;)
     {
-        while (Serial3.available())
-        {
-            char c = Serial3.read();
-            if (gps.encode(c))
-                sfr::gps::new_data = true;
-        }
+        while (Serial2.available())
+            {
+                char c = Serial2.read();
+                if (gps.encode(c))
+                    sfr::gps::new_data = true;
+            }
     }
+
     if (sfr::gps::new_data)
     {
+        //Serial.print("LOCK");
         float flat, flon;
         gps.f_get_position(&flat, &flon);
         sfr::gps::latitude = flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat;
@@ -55,6 +64,6 @@ void GPSMonitor::execute()
             float altitude_sum = std::accumulate(sfr::gps::altitude_buffer.begin(), sfr::gps::altitude_buffer.end(), 0.0);
             sfr::gps::altitude_average = altitude_sum / sfr::gps::altitude_buffer.size();
         }
-       
     }
+    
 }

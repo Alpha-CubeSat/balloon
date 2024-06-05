@@ -1,7 +1,6 @@
 #include "RockblockControlTask.hpp"
 
 RockblockControlTask::RockblockControlTask(unsigned int offset): TimedControlTask<void>(offset){
-    Serial4.begin(constants::rockblock::baud);
 }
 
 void RockblockControlTask::execute(){

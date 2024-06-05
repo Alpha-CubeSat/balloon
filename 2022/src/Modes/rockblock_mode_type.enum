@@ -13,6 +13,7 @@ enum class rockblock_mode_type: unsigned char {
     await_message_length,
     send_message,
     await_message,
+    await_message_ok,
     send_response,
     create_buffer,
     process_mo_status,

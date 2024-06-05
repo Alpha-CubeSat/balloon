@@ -7,6 +7,11 @@ BurnwireControlTask::BurnwireControlTask(unsigned int offset) : TimedControlTask
 
 void BurnwireControlTask::execute()
 {
+    delay(5000);
+    digitalWrite(constants::burnwire::pin, HIGH);
+    delay(1000);
+    digitalWrite(constants::burnwire::pin, LOW);
+    /*
     burnwire_mode_type mode = sfr::burnwire::mode;
 
     switch (mode)
@@ -64,6 +69,7 @@ void BurnwireControlTask::execute()
         break;
     }
     }
+    */
 }
 
 void BurnwireControlTask::dispatch_burn()
@@ -80,7 +86,6 @@ void BurnwireControlTask::dispatch_burn()
     {
         if (sfr::burnwire::attempts % 2 == 0)
         {
-            Serial.println("BURNING");
             digitalWrite(constants::burnwire::pin, HIGH);
         }
         else

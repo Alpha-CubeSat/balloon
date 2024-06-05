@@ -10,7 +10,7 @@ namespace constants
     namespace photoresistor
     {
         constexpr int pin = 22;
-        constexpr int light_val = 400;
+        constexpr int light_val = 600;
     }
     namespace burnwire
     {
@@ -27,10 +27,11 @@ namespace constants
         constexpr unsigned long ten_minutes = 10 * one_minute;
         constexpr unsigned long five_minutes = 5 * one_minute;
 
+        constexpr uint32_t control_cycle_time_ms = 100;
         constexpr int sleep_pin = 29;
 
         constexpr int min_sleep_period = 2 * one_minute;
-
+        constexpr int max_same_mode = 10 * one_minute / control_cycle_time_ms;
         constexpr int min_downlink_period = one_second;
         constexpr int max_downlink_period = ten_minutes;
 
@@ -130,7 +131,9 @@ namespace constants
     }
     namespace gps
     {
-        constexpr int baud = 9600;
+        constexpr int baud = 9600; 
+        constexpr int TXPin = 8;
+        constexpr int RXPin =7;
         constexpr int mand_deploy = 28000;
         constexpr int high_altitude = 20000;
         const unsigned char SetCfgNav5[] = {0xB5, 0x62, 0x06, 0x24, 0x24, 0x00, 0x01, 0x01,

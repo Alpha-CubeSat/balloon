@@ -24,7 +24,6 @@ protected:
     GPSMonitor gps_monitor;
     NormalReportMonitor normal_report_monitor;
     PhotoresistorMonitor photoresistor_monitor;
-
     BurnwireControlTask burnwire_control_task;
     CameraControlTask camera_control_task;
     RockblockControlTask rockblock_control_task;
