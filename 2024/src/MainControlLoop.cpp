@@ -22,7 +22,7 @@ void MainControlLoop::execute()
     // camera_report_monitor.execute();
     // command_monitor.execute();
     photoresistor_monitor.execute();
-    burnwire_control_task.execute(); 
+    //burnwire_control_task.execute(); 
     gps_monitor.execute();
     normal_report_monitor.execute();
     rockblock_control_task.execute();

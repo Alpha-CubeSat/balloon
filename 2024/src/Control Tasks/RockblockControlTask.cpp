@@ -12,15 +12,12 @@ void RockblockControlTask::execute(){
     //TODO: Add same_mode
     switch(mode){
         case rockblock_mode_type::standby:
-            Serial.println("sb");
             dispatch_standby();
             break;
         case rockblock_mode_type::send_at:
-            Serial.println("sa");
             dispatch_send_at();
             break;
         case rockblock_mode_type::await_at:
-            Serial.println("aa");
             dispatch_await_at();
             break;
         case rockblock_mode_type::send_signal_strength:
@@ -28,7 +25,6 @@ void RockblockControlTask::execute(){
             dispatch_send_signal_strength();
             break;
         case rockblock_mode_type::await_signal_strength:
-         Serial.println("ass");
             dispatch_await_signal_strength();
             break;
         case rockblock_mode_type::send_flow_control:
