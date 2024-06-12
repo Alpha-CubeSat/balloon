@@ -159,6 +159,12 @@ namespace constants
     }
     namespace temperature {
         constexpr int pin = A17;
+        constexpr int min_temp_c = -100;
+        constexpr int max_temp_c = 200;
+        constexpr int min_temp_f = -148;
+        constexpr int max_temp_f = 392;
+        constexpr int min_voltage = 0;
+        constexpr int max_voltage = 5;
     } 
     namespace video
     {
