@@ -92,4 +92,9 @@ namespace sfr
         float longitude_average = 0.0;
         bool new_data = false;
     }
+    namespace temperature {
+        float temp_c_value;
+        float temp_f_value;
+        float voltage;
+    }
 }

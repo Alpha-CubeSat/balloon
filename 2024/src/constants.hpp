@@ -153,7 +153,13 @@ namespace constants
     namespace sensor
     {
         constexpr int collect = 3;
+        constexpr int resolution = 1023;
+        constexpr float voltage_ref = 3.3;
+
     }
+    namespace temperature {
+        constexpr int pin = A17;
+    } 
     namespace video
     {
         constexpr int pin = 2;
