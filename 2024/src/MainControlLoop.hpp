@@ -17,19 +17,19 @@ class MainControlLoop : ControlTask<void>
 {
 protected:
     
-    ClockManager clock_manager;
+    ClockManager clock_manager; //Manages the timing of the control loop
 
-    CameraReportMonitor camera_report_monitor;
+    CameraReportMonitor camera_report_monitor; //Monitors gather and process information from various sensors and inputs
     CommandMonitor command_monitor;
     GPSMonitor gps_monitor;
     NormalReportMonitor normal_report_monitor;
     PhotoresistorMonitor photoresistor_monitor;
-    BurnwireControlTask burnwire_control_task;
+    BurnwireControlTask burnwire_control_task; //Different types of tasks that control specifc aspects of the system operation
     CameraControlTask camera_control_task;
     RockblockControlTask rockblock_control_task;
     VideoControlTask video_control_task;
 
-    MissionManager mission_manager;
+    MissionManager mission_manager; //Manages the overall mission of the system
 
 public:
     MainControlLoop();

@@ -1,5 +1,6 @@
 #include "MainControlLoop.hpp"
 
+//Constructor for the main control loop class. Intializes various member variables using values from constants::timecontrol
 MainControlLoop::MainControlLoop()
     : ControlTask<void>(),
     clock_manager(constants::timecontrol::control_cycle_time),
@@ -37,3 +38,13 @@ void MainControlLoop::execute()
        */
     mission_manager.execute();
 }
+/**
+ * Notes on mission_manager object:
+ * The MissionManager class has methods such as dispatch_standby(), dispatch_deployment(),
+ * dispatch_high_altitude(), and dispatch_post_deployment(). These methods are responsible 
+ * for transitioning the system to different mission modes based on certain conditions or events.
+ * The MissionManager class also has static methods transition_to_standby(), transition_to_high_altitude(), 
+ * transition_to_deployment() transition the system to a specific mission mode without going through the 
+ * dispatch methods and transition_to_post_deployment(). These static methods are used to directly 
+ * transition the system to a specific mission mode without going through the dispatch methods.
+ */

@@ -82,7 +82,7 @@ void BurnwireControlTask::dispatch_burn()
     {
         transition_to_standby();
     }
-    else
+    else //toggles burnwire pin between high and low every other attempt.
     {
         if (sfr::burnwire::attempts % 2 == 0)
         {
@@ -96,7 +96,7 @@ void BurnwireControlTask::dispatch_burn()
     }
 }
 
-void BurnwireControlTask::transition_to_standby()
+void BurnwireControlTask::transition_to_standby() //defining transition_to_standyby as a member function of the BurnwireControlTask class
 {
     sfr::burnwire::mode = burnwire_mode_type::standby;
     digitalWrite(constants::burnwire::pin, LOW);
