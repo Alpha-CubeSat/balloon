@@ -1,13 +1,11 @@
 #ifndef TEMPERATURE_MONITOR_HPP_
 #define TEMPERATURE_MONITOR_HPP_
 
-#include "constants.hpp"
 #include "sfr.hpp"
 
-class TemperatureMonitor
-{
+class TemperatureMonitor : public TimedControlTask<void>{
 public:
-    TemperatureMonitor();
+    TemperatureMonitor(unsigned int offset);
     void execute();
 };
 

@@ -30,7 +30,6 @@ protected:
     CameraControlTask camera_control_task;
     RockblockControlTask rockblock_control_task;
     VideoControlTask video_control_task;
-
     MissionManager mission_manager; //Manages the overall mission of the system
 
 public:
