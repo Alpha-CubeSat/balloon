@@ -8,6 +8,7 @@ MainControlLoop::MainControlLoop()
     command_monitor(constants::timecontrol::command_monitor_offset),
     normal_report_monitor(constants::timecontrol::normal_report_monitor_offset),
     photoresistor_monitor(constants::timecontrol::photoresistor_monitor_offset),
+    temperature_monitor(constants::timecontrol::temperature_monitor_monitor_offset)
     burnwire_control_task(constants::timecontrol::burnwire_control_task_offset),
     camera_control_task(constants::timecontrol::camera_control_task_offset),
     rockblock_control_task(constants::timecontrol::rockblock_control_task_offset),
@@ -36,7 +37,11 @@ void MainControlLoop::execute()
     Serial.println("average:"+ String(sfr::gps::latitude_average));
    burnwire_control_task.execute();
        */
-    mission_manager.execute();
+    //mission_manager.execute();
+    temperature_monitor.execute();
+    Serial.println(sfr::temperature_monitor::temp1_c_value+","+sfr::temperature_monitor::temp1_f_value)    
+    Serial.println(sfr::temperature_monitor::temp2_c_value+","+sfr::temperature_monitor::temp2_f_value)    
+
 }
 /**
  * Notes on mission_manager object:

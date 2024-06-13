@@ -158,7 +158,8 @@ namespace constants
 
     }
     namespace temperature {
-        constexpr int pin = A17;
+        constexpr int pin1 = A16;
+        constexpr int pin2 = A17;
         constexpr int min_temp_c = -100;
         constexpr int max_temp_c = 200;
         constexpr int min_temp_f = -148;

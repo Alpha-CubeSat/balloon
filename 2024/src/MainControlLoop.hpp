@@ -7,6 +7,7 @@
 #include "Monitors/CommandMonitor.hpp"
 #include "Monitors/NormalReportMonitor.hpp"
 #include "Monitors/PhotoresistorMonitor.hpp"
+#include "Monitors/TemperatureMonitor.hpp"
 #include "Monitors/GPSMonitor.hpp"
 #include "Control Tasks/BurnwireControlTask.hpp"
 #include "Control Tasks/CameraControlTask.hpp"
@@ -24,6 +25,7 @@ protected:
     GPSMonitor gps_monitor;
     NormalReportMonitor normal_report_monitor;
     PhotoresistorMonitor photoresistor_monitor;
+    TemperatureMonitor temperature_monitor;
     BurnwireControlTask burnwire_control_task; //Different types of tasks that control specifc aspects of the system operation
     CameraControlTask camera_control_task;
     RockblockControlTask rockblock_control_task;

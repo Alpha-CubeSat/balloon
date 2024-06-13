@@ -113,9 +113,12 @@ namespace sfr
         extern bool new_data;
     }
     namespace temperature {
-        extern float temp_c_value;
-        extern float temp_f_value;
-        extern float voltage;
+        extern float temp1_c_value;
+        extern float temp1_f_value;
+        extern float temp2_c_value;
+        extern float temp2_f_value;
+        extern float voltage1;
+        extern float voltage2;
     } 
 };
 
