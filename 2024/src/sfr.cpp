@@ -93,11 +93,11 @@ namespace sfr
         bool new_data = false;
     }
     namespace temperature {
-        float temp1_c_value;
-        float temp2_c_value;
-        float temp1_f_value;
-        float temp2_f_value;
-        float voltage1;
-        float voltage2;
+        float temp1_c_value=0.0;
+        float temp2_c_value=0.0;
+        float temp1_f_value=0.0;
+        float temp2_f_value=0.0;
+        float voltage1=0.0;
+        float voltage2=0.0;
     }
 }
