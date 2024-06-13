@@ -230,7 +230,7 @@ void RockblockControlTask::dispatch_send_message(){
     #ifdef VERBOSE
     Serial.println();
     Serial.print("SENT: ");
-    Serial.print(checksum >> 8);
+    Serial.print(checksum >> 8); //bitwise operations
     Serial.print(checksum & 0xFF);
     Serial.print('r');
     Serial.println();

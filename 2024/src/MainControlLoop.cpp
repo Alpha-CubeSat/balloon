@@ -19,14 +19,20 @@ MainControlLoop::MainControlLoop()
 
 void MainControlLoop::execute()
 {
+    //mission_manager.execute();
     // camera_report_monitor.execute();
     // command_monitor.execute();
+    //gps_monitor.execute();
+    //normal_report_monitor.execute();
     photoresistor_monitor.execute();
     //burnwire_control_task.execute(); 
-    gps_monitor.execute();
-    normal_report_monitor.execute();
+    //camera_control_task.execute();
     rockblock_control_task.execute();
 
+  
 
-    mission_manager.execute();
+
+
+
+
 }
