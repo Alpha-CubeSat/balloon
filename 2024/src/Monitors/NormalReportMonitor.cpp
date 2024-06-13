@@ -11,6 +11,9 @@ void NormalReportMonitor::execute()
     uint8_t altitude = map(sfr::gps::altitude_average, constants::gps::min_altitude_average, constants::gps::max_altitude_average, 0, 255);
     uint8_t longitude = map(sfr::gps::longitude_average, constants::gps::min_longitude_average, constants::gps::max_longitude_average, 0, 255);
     uint8_t latitude = map(sfr::gps::latitude_average, constants::gps::min_latitude_average, constants::gps::max_longitude_average, 0, 255);
+    uint8_t temperature_c = map(sfr::temperature::temp1_c_value, constants::temperature::min_temp_c, constants::temperature::max_temp_c, 0, 255);
+    uint8_t temperature_f = map(sfr::temperature::temp1_f_value, constants::temperature::min_temp_f, constants::temperature::max_temp_f, 0, 255);
+    uint8_t temperature_voltage = map(sfr::temperature::voltage1, constants::temperature::min_voltage, constants::temperature::max_voltage, 0, 255); //min=0 and max=5.
     //Serial.print("mapped alt: "); Serial.println(altitude);
     //Serial.print("mapped long: "); Serial.println(longitude);
     //Serial.print("mapped lat: "); Serial.println(latitude);
@@ -23,4 +26,6 @@ void NormalReportMonitor::execute()
     sfr::rockblock::report[6] = (uint8_t)sfr::burnwire::mode;
     sfr::rockblock::report[7] = sfr::burnwire::attempts;
     sfr::rockblock::report[8] = downlink_period;
+    sfr::rockblock::report[9] = temperature_c;
+    sfr::rockblock::report[10] = temperature_f;
 }

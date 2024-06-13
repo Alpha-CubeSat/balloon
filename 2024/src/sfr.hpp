@@ -84,7 +84,7 @@ namespace sfr
         extern uint8_t arg_1[4];
         extern uint8_t arg_2[4];
 #ifndef SIMULATOR
-        extern HardwareSerial serial;
+        // extern HardwareSerial serial;
 #else
         extern RockblockSimulator serial;
 #endif
@@ -112,6 +112,14 @@ namespace sfr
         extern float longitude_average;
         extern bool new_data;
     }
+    namespace temperature {
+        extern float temp1_c_value;
+        extern float temp1_f_value;
+        extern float temp2_c_value;
+        extern float temp2_f_value;
+        extern float voltage1;
+        extern float voltage2;
+    } 
 };
 
 #endif

@@ -65,6 +65,7 @@ namespace sfr
         uint8_t arg_2[4] = {0};
 #ifndef SIMULATOR
         //HardwareSerial serial = Serial7;
+
 #else
         RockblockSimulator serial;
 #endif
@@ -91,5 +92,13 @@ namespace sfr
         std::deque<float> longitude_buffer;
         float longitude_average = 0.0;
         bool new_data = false;
+    }
+    namespace temperature {
+        float temp1_c_value=0.0;
+        float temp2_c_value=0.0;
+        float temp1_f_value=0.0;
+        float temp2_f_value=0.0;
+        float voltage1=0.0;
+        float voltage2=0.0;
     }
 }
