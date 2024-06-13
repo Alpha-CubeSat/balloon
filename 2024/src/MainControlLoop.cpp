@@ -19,21 +19,20 @@ MainControlLoop::MainControlLoop()
 
 void MainControlLoop::execute()
 {
+    //mission_manager.execute();
     // camera_report_monitor.execute();
     // command_monitor.execute();
-    /*
-    normal_report_monitor.execute();
+    //gps_monitor.execute();
+    //normal_report_monitor.execute();
     photoresistor_monitor.execute();
-    gps_monitor.execute();
-    Serial.println("altitude:"+ String(sfr::gps::altitude));
-    Serial.println("average:"+ String(sfr::gps::altitude_average));
-    
-    Serial.println("longitude:"+ String(sfr::gps::longitude));
-    Serial.println("average:"+ String(sfr::gps::longitude_average));
+    //burnwire_control_task.execute(); 
+    //camera_control_task.execute();
+    rockblock_control_task.execute();
 
-    Serial.println("latitude:"+ String(sfr::gps::latitude));
-    Serial.println("average:"+ String(sfr::gps::latitude_average));
-   burnwire_control_task.execute();
-       */
-    mission_manager.execute();
+  
+
+
+
+
+
 }

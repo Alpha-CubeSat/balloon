@@ -10,4 +10,6 @@ void PhotoresistorMonitor::execute(){
     else{
         sfr::photoresistor::covered = true;
     }
+    delay(1000);
+    Serial.print(sfr::photoresistor::covered);
 }
