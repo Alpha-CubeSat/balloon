@@ -39,8 +39,7 @@ void MainControlLoop::execute()
        */
     //mission_manager.execute();
     temperature_monitor.execute();
-    Serial.println(sfr::temperature::temp1_c_value);
-    Serial.println(sfr::temperature::temp2_f_value);
+ 
 
 }
 /**

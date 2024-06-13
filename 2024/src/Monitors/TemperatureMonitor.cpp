@@ -3,7 +3,14 @@
 TemperatureMonitor::TemperatureMonitor(unsigned int offset): TimedControlTask<void>(offset){}
 
 void TemperatureMonitor::execute()
-{   
+{   /*
+    Serial.print(sfr::temperature::temp2_c_value);
+    Serial.println("C");
+    Serial.print(sfr::temperature::temp2_f_value);
+    Serial.println("F");
+    delay(500);
+    */
+
     //set voltage
     sfr::temperature::voltage1 = (((analogRead(constants::temperature::pin1) * constants::sensor::voltage_ref) / constants::sensor::resolution));
     sfr::temperature::voltage2 = (((analogRead(constants::temperature::pin2) * constants::sensor::voltage_ref) / constants::sensor::resolution));
