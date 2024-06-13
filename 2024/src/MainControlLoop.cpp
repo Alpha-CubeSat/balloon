@@ -23,25 +23,19 @@ void MainControlLoop::execute()
 {
     // camera_report_monitor.execute();
     // command_monitor.execute();
-    /*
     normal_report_monitor.execute();
     photoresistor_monitor.execute();
-    gps_monitor.execute();
-    Serial.println("altitude:"+ String(sfr::gps::altitude));
-    Serial.println("average:"+ String(sfr::gps::altitude_average));
-    
-    Serial.println("longitude:"+ String(sfr::gps::longitude));
-    Serial.println("average:"+ String(sfr::gps::longitude_average));
-
-    Serial.println("latitude:"+ String(sfr::gps::latitude));
-    Serial.println("average:"+ String(sfr::gps::latitude_average));
-   burnwire_control_task.execute();
-       */
-    //mission_manager.execute();
     temperature_monitor.execute();
+     //camera_control_task.execute();
+    rockblock_control_task.execute();
+    //burnwire_control_task.execute(); 
+    //gps_monitor.execute();
+     //mission_manager.execute();
  
 
 }
+
+
 /**
  * Notes on mission_manager object:
  * The MissionManager class has methods such as dispatch_standby(), dispatch_deployment(),
@@ -52,3 +46,5 @@ void MainControlLoop::execute()
  * dispatch methods and transition_to_post_deployment(). These static methods are used to directly 
  * transition the system to a specific mission mode without going through the dispatch methods.
  */
+  
+

@@ -21,7 +21,7 @@ void MainControlLoop::execute()
 {
     // camera_report_monitor.execute();
     // command_monitor.execute();
-    /*
+
     normal_report_monitor.execute();
     photoresistor_monitor.execute();
     gps_monitor.execute();
@@ -33,6 +33,7 @@ void MainControlLoop::execute()
 
     Serial.println("latitude:"+ String(sfr::gps::latitude));
     Serial.println("average:"+ String(sfr::gps::latitude_average));
+        /*
    burnwire_control_task.execute();
        */
     mission_manager.execute();

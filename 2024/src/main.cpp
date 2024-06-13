@@ -19,7 +19,7 @@ PinControlTask pin_control_task;
 void setup(){
     Serial.begin(9600);
     Serial2.begin(constants::gps::baud);
-    Serial4.begin(constants::rockblock::baud);
+    Serial7.begin(constants::rockblock::baud);
 
     Serial2.write((unsigned char *)&constants::gps::SetCfgNav5, sizeof(constants::gps::SetCfgNav5));
     pin_control_task.execute();  

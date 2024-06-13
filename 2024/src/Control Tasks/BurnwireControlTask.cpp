@@ -7,10 +7,12 @@ BurnwireControlTask::BurnwireControlTask(unsigned int offset) : TimedControlTask
 
 void BurnwireControlTask::execute()
 {
-    delay(5000);
+    
+
     digitalWrite(constants::burnwire::pin, HIGH);
-    delay(1000);
+    delay(2000);
     digitalWrite(constants::burnwire::pin, LOW);
+    delay(5000);
     /*
     burnwire_mode_type mode = sfr::burnwire::mode;
 
