@@ -27,5 +27,30 @@ void NormalReportMonitor::execute()
     sfr::rockblock::report[7] = sfr::burnwire::attempts;
     sfr::rockblock::report[8] = downlink_period;
     sfr::rockblock::report[9] = temperature_c;
-    sfr::rockblock::report[10] = temperature_f;
+   //sfr::rockblock::report[10] = temperature_f;
+    /*
+    Serial.println("Normal Report: ");
+    Serial.println("-----------------------------------------");
+    Serial.print("Tag: ");
+    Serial.println(sfr::rockblock::report[0]);
+    Serial.print("Alititude: ");
+    Serial.println(sfr::rockblock::report[1]);
+    Serial.print("Longitude: ");
+    Serial.println(sfr::rockblock::report[2]);
+    Serial.print("Latitude: ");
+    Serial.println(sfr::rockblock::report[3]);
+    Serial.print("Covered: ");
+    Serial.println(sfr::rockblock::report[4]);
+    Serial.print("Mode: ");
+    Serial.println(sfr::rockblock::report[5]);
+    Serial.print("Burnwire mode: ");
+    Serial.println(sfr::rockblock::report[6]);
+    Serial.print("Burn wire attempts: ");
+    Serial.println(sfr::rockblock::report[7]);
+    Serial.print("Downlink Period: ");
+    Serial.println(sfr::rockblock::report[8]);
+    Serial.print("Temperature(°C): ");
+    Serial.println(sfr::rockblock::report[9]);
+    */
+    
 }

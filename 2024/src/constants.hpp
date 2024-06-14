@@ -10,7 +10,7 @@ namespace constants
     namespace photoresistor
     {
         constexpr int pin = 22;
-        constexpr int light_val = 600;
+        constexpr int light_val = 700; //increased light val for natural light enviornment, this value will need to be determined
     }
     namespace burnwire
     {
