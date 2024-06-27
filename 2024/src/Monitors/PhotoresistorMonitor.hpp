@@ -3,9 +3,9 @@
 
 #include "sfr.hpp"
 
-class PhotoresistorMonitor : public TimedControlTask<void>{
+class PhotoresistorMonitor {
     public:
-        PhotoresistorMonitor(unsigned int offset);
+        PhotoresistorMonitor();
         void execute();
 };
 

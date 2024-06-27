@@ -1,10 +1,10 @@
 #include "MissionManager.hpp"
 
-MissionManager::MissionManager(unsigned int offset) : TimedControlTask<void>(offset) //Constructor, among others, called in MainControlLoop.cpp. Offset defined in Constants.cpp.
+MissionManager::MissionManager()//Constructor, among others, called in MainControlLoop.cpp. 
 {
     transition_to_standby();//Sets the initial state of MissionManager
 
-    sfr::timer::start_time = millis(); //The millis() function returns the number of milliseconds since the program started. So this sets start time to the time when MissionManager is called.
+    sfr::time::start_time = millis(); //The millis() function returns the number of milliseconds since the program started. So this sets start time to the time when MissionManager is called.
 }
 
 void MissionManager::execute() //Called in MainControlLoop.cpp as well.
@@ -30,7 +30,7 @@ void MissionManager::execute() //Called in MainControlLoop.cpp as well.
 
 void MissionManager::dispatch_standby()
 {
-    if ((millis() - sfr::timer::start_time) >= constants::timer::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
+    if ((millis() - sfr::time::start_time) >= constants::time::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
     {
         transition_to_deployment();
     }
@@ -42,7 +42,7 @@ void MissionManager::dispatch_standby()
 
 void MissionManager::dispatch_high_altitude()
 {
-    if ((millis() - sfr::timer::start_time) >= constants::timer::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
+    if ((millis() - sfr::time::start_time) >= constants::time::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
     {
         transition_to_deployment();
     }
@@ -66,29 +66,33 @@ void MissionManager::dispatch_post_deployment() {}
 
 void MissionManager::transition_to_standby()
 {
+    Serial.print("Transitioning to Standby");
     sfr::mission::mode = mission_mode_type::standby;
-    sfr::rockblock::downlink_period = constants::rockblock::five_minutes;
-    sfr::rockblock::camera_downlink_period = constants::rockblock::five_minutes;
+    sfr::rockblock::downlink_period = constants::time::five_minutes;
+    sfr::rockblock::camera_downlink_period = constants::time::five_minutes;
 }
 
 void MissionManager::transition_to_deployment()
 {
+    Serial.print("Transitioning to Deployment");
     sfr::camera::turn_off = true;
     sfr::mission::mode = mission_mode_type::deployment;
-    sfr::rockblock::downlink_period = constants::rockblock::one_minute;
-    sfr::rockblock::camera_downlink_period = constants::rockblock::one_minute;
+    sfr::rockblock::downlink_period = constants::time::one_minute;
+    sfr::rockblock::camera_downlink_period = constants::time::one_minute;
 }
 
 void MissionManager::transition_to_high_altitude()
 {
-    sfr::rockblock::downlink_period = constants::rockblock::one_minute;
-    sfr::rockblock::camera_downlink_period = constants::rockblock::one_minute;
+    Serial.print("Transitioning to High Altitude");
+    sfr::rockblock::downlink_period = constants::time::one_minute;
+    sfr::rockblock::camera_downlink_period = constants::time::one_minute;
     sfr::mission::mode = mission_mode_type::high_altitude;
 }
 
 void MissionManager::transition_to_post_deployment()
 {
-    sfr::rockblock::downlink_period = constants::rockblock::five_minutes;
-    sfr::rockblock::camera_downlink_period = constants::rockblock::five_minutes;
+    Serial.print("Transitioning to Post-Deployment");
+    sfr::rockblock::downlink_period = constants::time::five_minutes;
+    sfr::rockblock::camera_downlink_period = constants::time::five_minutes;
     sfr::mission::mode = mission_mode_type::post_deployment;
 }

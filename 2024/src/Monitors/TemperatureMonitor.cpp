@@ -1,6 +1,6 @@
 #include "TemperatureMonitor.hpp"
 
-TemperatureMonitor::TemperatureMonitor(unsigned int offset): TimedControlTask<void>(offset){}
+TemperatureMonitor::TemperatureMonitor(){}
 
 void TemperatureMonitor::execute()
 {   /*

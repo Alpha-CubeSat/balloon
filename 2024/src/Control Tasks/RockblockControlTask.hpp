@@ -3,9 +3,9 @@
 
 #include "sfr.hpp"
 
-class RockblockControlTask : public TimedControlTask<void>{
+class RockblockControlTask {
     public:
-        RockblockControlTask(unsigned int offset);
+        RockblockControlTask();
         void execute();
     private:
         void handle_command(int opcode, int argument);

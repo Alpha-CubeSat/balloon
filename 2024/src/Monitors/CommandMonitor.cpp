@@ -1,6 +1,6 @@
 #include "CommandMonitor.hpp"
 
-CommandMonitor::CommandMonitor(unsigned int offset) : TimedControlTask<void>(offset) {}
+CommandMonitor::CommandMonitor() {}
 
 void CommandMonitor::execute()
 {

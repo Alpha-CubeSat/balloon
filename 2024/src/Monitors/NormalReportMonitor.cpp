@@ -1,6 +1,6 @@
 #include "NormalReportMonitor.hpp"
 
-NormalReportMonitor::NormalReportMonitor(unsigned int offset) : TimedControlTask<void>(offset) {}
+NormalReportMonitor:: NormalReportMonitor() {}
 
 void NormalReportMonitor::execute()
 {

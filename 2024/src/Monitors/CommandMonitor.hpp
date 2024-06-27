@@ -3,9 +3,9 @@
 
 #include "sfr.hpp"
 
-class CommandMonitor : public TimedControlTask<void>{
+class CommandMonitor {
     public:
-        CommandMonitor(unsigned int offset);
+        CommandMonitor();
         void execute();
         void dispatch_change_mission_mode();
         void dispatch_change_true_false(bool& value);
