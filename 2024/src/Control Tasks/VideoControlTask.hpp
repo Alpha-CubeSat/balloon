@@ -3,10 +3,10 @@
 
 #include "sfr.hpp"
 
-class VideoControlTask : public TimedControlTask<void>{
+class VideoControlTask {
 
     public:
-        VideoControlTask(unsigned int offset);
+        VideoControlTask();
         void execute();
        
 };

@@ -1,6 +1,6 @@
 #include "PhotoresistorMonitor.hpp"
 
-PhotoresistorMonitor::PhotoresistorMonitor(unsigned int offset): TimedControlTask<void>(offset){}
+PhotoresistorMonitor::PhotoresistorMonitor(){}
 
 void PhotoresistorMonitor::execute(){
     int val = analogRead(constants::photoresistor::pin);

@@ -14,7 +14,7 @@
 #include "Control Tasks/RockblockControlTask.hpp"
 #include "Control Tasks/VideoControlTask.hpp"
 
-class MainControlLoop : ControlTask<void>
+class MainControlLoop
 {
 protected:
     
@@ -34,7 +34,7 @@ protected:
 
 public:
     MainControlLoop();
-    void execute() override;
+    void execute();
 };
 
 #endif

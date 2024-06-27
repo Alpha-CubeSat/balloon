@@ -3,9 +3,15 @@
 
 namespace constants
 {
-    namespace timer
+    namespace time
     {
+        constexpr unsigned long one_second = 1000;
         constexpr int fail_safe_deploy = 5400000;
+        constexpr unsigned long one_minute = 60 * one_second;
+        constexpr unsigned long ten_minutes = 10 * one_minute;
+        constexpr unsigned long five_minutes = 5 * one_minute;
+
+        constexpr int control_cycle_time_ms = 100;
     }
     namespace photoresistor
     {
@@ -21,19 +27,12 @@ namespace constants
     }
     namespace rockblock
     {
-        constexpr unsigned long one_second = 1000;
-
-        constexpr unsigned long one_minute = 60 * one_second;
-        constexpr unsigned long ten_minutes = 10 * one_minute;
-        constexpr unsigned long five_minutes = 5 * one_minute;
-
-        constexpr uint32_t control_cycle_time_ms = 100;
         constexpr int sleep_pin = 29;
 
-        constexpr int min_sleep_period = 2 * one_minute;
-        constexpr int max_same_mode = 10 * one_minute / control_cycle_time_ms;
-        constexpr int min_downlink_period = one_second;
-        constexpr int max_downlink_period = ten_minutes;
+        constexpr int min_sleep_period = 2 * time::one_minute;
+        constexpr int max_same_mode = 10 * time::one_minute / time::control_cycle_time_ms;
+        constexpr int min_downlink_period = time::one_second;
+        constexpr int max_downlink_period = time::ten_minutes;
 
         constexpr int baud = 19200;
         constexpr size_t buffer_size = 63;
@@ -97,37 +96,6 @@ namespace constants
         constexpr int content_length = 64;
         constexpr int bytes_allocated_serial_opcode = 2;
         constexpr int bytes_allocated_fragment = 4;
-    }
-    namespace timecontrol
-    {
-        // Environment-based initializations of the control loop time.
-        // control_cycle_time is the value actually used for timing. The
-        // other constants are just informational.
-        constexpr unsigned int control_cycle_time_ms = 100;
-        constexpr unsigned int control_cycle_time_us = control_cycle_time_ms * 1000;
-        constexpr unsigned int control_cycle_time = control_cycle_time_us;
-
-        static constexpr unsigned int base_offset = 30000;
-        // Control cycle time offsets, in microseconds
-        static constexpr unsigned int acs_monitor_offset = 0;
-        static constexpr unsigned int battery_monitor_offset = 1 * base_offset;
-        static constexpr unsigned int button_monitor_offset = 2 * base_offset;
-        static constexpr unsigned int camera_report_monitor_offset = 3 * base_offset;
-        static constexpr unsigned int command_monitor_offset = 4 * base_offset;
-        static constexpr unsigned int current_monitor_offset = 5 * base_offset;
-        static constexpr unsigned int fault_monitor_offset = 6 * base_offset;
-        static constexpr unsigned int imu_monitor_offset = 7 * base_offset;
-        static constexpr unsigned int normal_report_monitor_offset = 8 * base_offset;
-        static constexpr unsigned int photoresistor_monitor_offset = 9 * base_offset;
-        static constexpr unsigned int temperature_monitor_offset = 10 * base_offset;
-
-        static constexpr unsigned int acs_control_task_offset = 11 * base_offset;
-        static constexpr unsigned int burnwire_control_task_offset = 12 * base_offset;
-        static constexpr unsigned int camera_control_task_offset = 13 * base_offset;
-        static constexpr unsigned int rockblock_control_task_offset = 14 * base_offset;
-        static constexpr unsigned int temperature_control_task_offset = 15 * base_offset;
-
-        static constexpr unsigned int mission_manager_offset = 16 * base_offset;
     }
     namespace gps
     {

@@ -3,9 +3,8 @@
 
 TinyGPS gps;
 
-GPSMonitor::GPSMonitor(unsigned int offset) : TimedControlTask<void>(offset)
+GPSMonitor::GPSMonitor()
 {
-
 
     //delay(1000);
 }

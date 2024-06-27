@@ -5,7 +5,6 @@
 #include "Modes/mission_mode_type.enum"
 #include "Modes/rockblock_mode_type.enum"
 #include "Modes/burnwire_mode_type.enum"
-#include "Control Tasks/TimedControlTask.hpp"
 #include "Control Tasks/BurnwireControlTask.hpp"
 #include "RockblockSimulator.hpp"
 #include "constants.hpp"
@@ -21,7 +20,7 @@
 
 namespace sfr
 {
-    namespace timer
+    namespace time
     {
         extern float start_time;
     }
@@ -32,6 +31,7 @@ namespace sfr
     namespace mission
     {
         extern mission_mode_type mode;
+        extern int cycle_start;
     }
     namespace burnwire
     {

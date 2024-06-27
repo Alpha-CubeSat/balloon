@@ -1,37 +1,39 @@
 #include "MainControlLoop.hpp"
 
 //Constructor for the main control loop class. Intializes various member variables using values from constants::timecontrol
-MainControlLoop::MainControlLoop()
-    : ControlTask<void>(),
-    clock_manager(constants::timecontrol::control_cycle_time),
-    camera_report_monitor(constants::timecontrol::camera_report_monitor_offset),
-    command_monitor(constants::timecontrol::command_monitor_offset),
-    normal_report_monitor(constants::timecontrol::normal_report_monitor_offset),
-    photoresistor_monitor(constants::timecontrol::photoresistor_monitor_offset),
-    temperature_monitor(constants::timecontrol::temperature_monitor_offset),
-    burnwire_control_task(constants::timecontrol::burnwire_control_task_offset),
-    camera_control_task(constants::timecontrol::camera_control_task_offset),
-    rockblock_control_task(constants::timecontrol::rockblock_control_task_offset),
-    mission_manager(constants::timecontrol::mission_manager_offset),
-    video_control_task(constants::timecontrol::rockblock_control_task_offset),
-    gps_monitor(constants::timecontrol::rockblock_control_task_offset)
+MainControlLoop::MainControlLoop():
+    clock_manager(),
+    camera_report_monitor(),
+    command_monitor(),
+    normal_report_monitor(),
+    photoresistor_monitor(),
+    temperature_monitor(),
+    burnwire_control_task(),
+    camera_control_task(),
+    rockblock_control_task(),
+    mission_manager(),
+    video_control_task(),
+    gps_monitor()
 {
     delay(1000);
 }
 
 void MainControlLoop::execute()
 {
-    // camera_report_monitor.execute();
+    
+    sfr::mission::cycle_start = millis();
+    camera_report_monitor.execute();
     // command_monitor.execute();
     normal_report_monitor.execute();
     photoresistor_monitor.execute();
     temperature_monitor.execute();
     gps_monitor.execute();
-     //camera_control_task.execute();
+    camera_control_task.execute();
     rockblock_control_task.execute();
     //burnwire_control_task.execute(); 
 
-     //mission_manager.execute();
+    mission_manager.execute();
+    clock_manager.execute();
  
 
 }

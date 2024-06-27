@@ -1,6 +1,6 @@
 #include "RockblockControlTask.hpp"
 
-RockblockControlTask::RockblockControlTask(unsigned int offset): TimedControlTask<void>(offset){
+RockblockControlTask::RockblockControlTask(){
 }
 
 void RockblockControlTask::execute(){
@@ -84,18 +84,21 @@ void RockblockControlTask::execute(){
     }
 }
 
-bool RockblockControlTask::check_ready(){
+bool RockblockControlTask::check_ready(){ //If cam downlink and normal downlink are equal, prioritize downlinking camera
     if(millis() - sfr::rockblock::last_downlink >= sfr::rockblock::downlink_period){
         if(sfr::rockblock::downlink_period == sfr::rockblock::camera_downlink_period && sfr::camera::report_ready == true){
             if(sfr::rockblock::last_downlink_normal == false){
                 sfr::rockblock::downlink_camera = false;
             } else{
                 sfr::rockblock::downlink_camera = true;
+                Serial.print("Ready to Override Downlink Camera");
             }
         }
+        Serial.print("Ready to Downlink");
         return true;
     } else if((millis() - sfr::rockblock::last_downlink >= sfr::rockblock::camera_downlink_period) && sfr::camera::report_ready == true){
         sfr::rockblock::downlink_camera = true;
+                  Serial.print("Ready to Downlink Camera");
         return true;
     } else{
         return false;
@@ -196,7 +199,7 @@ void RockblockControlTask::dispatch_await_message_length(){
 
 void RockblockControlTask::dispatch_send_message(){
     if(sfr::camera::report_ready == true){
-        if(sfr::rockblock::last_downlink_normal == false){
+        if(sfr::rockblock::last_downlink_normal == false){ //!! this is redundent
             sfr::rockblock::downlink_camera = false;
         } else{
             sfr::rockblock::downlink_camera = true;

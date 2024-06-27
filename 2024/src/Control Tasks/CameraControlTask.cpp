@@ -1,6 +1,6 @@
 #include "CameraControlTask.hpp"
 
-CameraControlTask::CameraControlTask(unsigned int offset): TimedControlTask<void>(offset), adaCam(&Serial5)
+CameraControlTask::CameraControlTask(): adaCam(&Serial6)
 {
     sfr::camera::turn_on = true;
     sfr::camera::powered = false;
@@ -39,6 +39,9 @@ void CameraControlTask::execute()
             sfr::camera::powered = true;
             sfr::camera::turn_on = false;
         }
+        else{
+            Serial.println("Camera Disconnected");
+        }
     }
 
     if (sfr::camera::jpglen > 0 && sfr::camera::photo_taken_sd_failed == false) {
@@ -65,16 +68,16 @@ void CameraControlTask::execute()
             if(buffer[i] < 16){
                 imgFile.print(0, HEX);
                 #ifdef VERBOSE
-                    Serial.print(0, HEX);
+                   // Serial.print(0, HEX);
                 #endif
             }
             imgFile.print(buffer[i], HEX);
             #ifdef VERBOSE
-                Serial.print(buffer[i],HEX);
+                //Serial.print(buffer[i],HEX);
             #endif
         }
 
-        Serial.println("");
+        //Serial.println("");
         
         sfr::camera::jpglen -= bytesToRead;
         imgFile.close();

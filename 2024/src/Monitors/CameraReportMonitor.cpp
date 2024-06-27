@@ -1,5 +1,5 @@
 #include "CameraReportMonitor.hpp"
-CameraReportMonitor::CameraReportMonitor(unsigned int offset): TimedControlTask<void>(offset){}
+CameraReportMonitor::CameraReportMonitor(){}
 
 void CameraReportMonitor::execute(){
     //Get a requested fragment
@@ -15,11 +15,11 @@ void CameraReportMonitor::execute(){
         Serial.println("Current fragment: " + String(sfr::camera::fragment_number));
         #endif
         if (sfr::camera::full_image_written == true || sfr::camera::fragment_number == 0){
-            sfr::camera::full_image_written = false;
+            sfr::camera::full_image_written = false; //TODO find where this is ever true
         }
         create_camera_report(sfr::camera::fragment_number, sfr::camera::current_serial);
         if (sfr::camera::fragment_number == sfr::rockblock::camera_max_fragments[sfr::camera::current_serial]){
-            add_possible_command();
+            //add_possible_command(); TODO test commands
             sfr::camera::current_serial += 1;
         } else{
             sfr::camera::fragment_number++; 
@@ -99,7 +99,8 @@ void CameraReportMonitor::create_camera_report(int fragment_number, uint8_t seri
         y = y + 1;
         z = z + 1;
     }
-    sfr::camera::report_ready = true;
+    //TELLS ROCKBLOCK WE ARE READY TO DOWNLINK CAMERA REPORT
+    sfr::camera::report_ready = true; 
     sfr::camera::report_downlinked = false;
 }
 

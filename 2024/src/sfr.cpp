@@ -2,7 +2,7 @@
 
 namespace sfr
 {
-    namespace timer
+    namespace time
     {
         float start_time = 0.0;
     }
@@ -12,7 +12,9 @@ namespace sfr
     }
     namespace mission
     {
+        int cycle_start = 0;
         mission_mode_type mode = mission_mode_type::standby;
+        
     }
     namespace burnwire
     {
@@ -24,7 +26,7 @@ namespace sfr
     namespace camera
     {
         bool photo_taken_sd_failed = false;
-        bool take_photo = false;
+        bool take_photo = true;
         bool turn_on = false;
         bool turn_off = false;
         bool powered = false;
@@ -51,7 +53,7 @@ namespace sfr
         int camera_max_fragments[99] = {};
         bool downlink_camera = false;
         bool sleep_mode = false;
-        unsigned long last_downlink = 0;
+        unsigned long last_downlink = 0; 
         unsigned long downlink_period = 0;
         unsigned long camera_downlink_period = 0;
         rockblock_mode_type mode = rockblock_mode_type::send_at;
@@ -75,7 +77,7 @@ namespace sfr
         uint16_t f_opcode = 0;
         uint32_t f_arg_1 = 0;
         uint32_t f_arg_2 = 0;
-        int timeout = 10 * constants::rockblock::one_minute;
+        int timeout = 10 * constants::time::one_minute;
         int start_time = 0;
         bool last_timed_out = false;
         int num_downlinks = 0;

@@ -3,9 +3,9 @@
 
 #include "sfr.hpp"
 
-class GPSMonitor : public TimedControlTask<void>{
+class GPSMonitor {
     public:
-        GPSMonitor(unsigned int offset);
+        GPSMonitor();
         void execute();
     private:
         float num_entries = 0;

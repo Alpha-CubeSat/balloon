@@ -3,11 +3,11 @@
 
 #include "sfr.hpp"
 
-class CameraControlTask : public TimedControlTask<void>
+class CameraControlTask 
 {
 
 public:
-    CameraControlTask(unsigned int offset);
+    CameraControlTask();
     void execute();
     Adafruit_VC0706 adaCam;
     File imgFile;

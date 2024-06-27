@@ -3,9 +3,9 @@
 
 #include "sfr.hpp"
 
-class BurnwireControlTask : public TimedControlTask<void>{
+class BurnwireControlTask{
     public:
-        BurnwireControlTask(unsigned int offset);
+        BurnwireControlTask();
         void execute();
         void dispatch_burn();
         static void transition_to_standby();
