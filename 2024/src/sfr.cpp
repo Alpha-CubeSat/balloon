@@ -51,6 +51,7 @@ namespace sfr
         bool last_downlink_normal = false;
         int camera_commands[99][constants::rockblock::command_len] = {};
         int camera_max_fragments[99] = {};
+        int camera_num_fragments = 0;
         bool downlink_camera = false;
         bool sleep_mode = false;
         unsigned long last_downlink = 0; 

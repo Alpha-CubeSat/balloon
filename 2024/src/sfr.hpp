@@ -70,6 +70,7 @@ namespace sfr
         extern bool last_downlink_normal;
         extern int camera_commands[99][constants::rockblock::command_len];
         extern int camera_max_fragments[99];
+        extern int camera_num_fragments;
         extern bool downlink_camera;
         extern unsigned long last_downlink;
         extern unsigned long downlink_period;
