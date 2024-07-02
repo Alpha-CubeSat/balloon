@@ -499,9 +499,11 @@ bool RockblockControlTask::valid_command(){
     }
 
     bool non_std_cmd = (rockblock_downlink_period_opcode && arg_2) || 
-                      (request_image_fragment_opcode && arg_1) ||
-                      (burnwire_time_opcode) ||
-                      (burnwire_timeout_opcode);
+                      (request_image_fragment_opcode && arg_1);
+                    /*
+                      (burnwire_time_opcode) || TODO add in op codes for burnwire_time_opcode
+                      (burnwire_timeout_opcode)
+                      */
     if(non_std_cmd) {
         Serial.println("SAT CMD: command validated - Nonstandard command");
         return true;

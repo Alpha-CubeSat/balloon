@@ -68,7 +68,7 @@ void MissionManager::transition_to_standby()
 {
     Serial.print("Transitioning to Standby");
     sfr::mission::mode = mission_mode_type::standby;
-    sfr::rockblock::downlink_period = constants::time::ten_minutes; //CHANGED FOR TESTING
+    sfr::rockblock::downlink_period = constants::time::one_second*30; //CHANGED FOR TESTING
     sfr::rockblock::camera_downlink_period = constants::time::one_second*30;
 }
 
