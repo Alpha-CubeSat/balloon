@@ -409,7 +409,6 @@ void RockblockControlTask::dispatch_process_command(){
             sfr::rockblock::f_opcode = (sfr::rockblock::opcode[1] << 8) | (sfr::rockblock::opcode[0]);
             sfr::rockblock::f_arg_1  = (sfr::rockblock::arg_1[3] << 24) | (sfr::rockblock::arg_1[2] << 16) | (sfr::rockblock::arg_1[1] << 8) | (sfr::rockblock::arg_1[0]);
             sfr::rockblock::f_arg_2  = (sfr::rockblock::arg_2[3] << 24) | (sfr::rockblock::arg_2[2] << 16) | (sfr::rockblock::arg_2[1] << 8) | (sfr::rockblock::arg_2[0]);
-            
             sfr::rockblock::waiting_command = true;
         } else if(sfr::rockblock::opcode[0] == 'F' && sfr::rockblock::opcode[1] == 'L') {
             Serial.println("SAT INFO: flush confirmed");
@@ -504,7 +503,7 @@ bool RockblockControlTask::valid_command(){
                       (burnwire_time_opcode) ||
                       (burnwire_timeout_opcode);
     if(non_std_cmd) {
-        Serial.println("SAT CMD: command validated");
+        Serial.println("SAT CMD: command validated - Nonstandard command");
         return true;
     }
 
@@ -531,7 +530,7 @@ bool RockblockControlTask::valid_command(){
         }
 
         if( (opcode && arg_1 && arg_2) ){
-            Serial.println("SAT CMD: command validated");
+            Serial.println("SAT CMD: command validated -Standard Command");
             return true;
         }
     }
