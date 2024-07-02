@@ -8,15 +8,18 @@ void CommandMonitor::execute()
     {
         if (sfr::rockblock::f_opcode == get_decimal_opcode(constants::rockblock::mission_mode))
         {
-            dispatch_change_mission_mode();
+            Serial.print("changing mission mode");
+            //dispatch_change_mission_mode();
         }
         else if (sfr::rockblock::f_opcode == get_decimal_opcode(constants::rockblock::rockblock_downlink_period))
         {
-            dispatch_change_rockblock_downlink_period();
+              Serial.print("changing downlink_period");
+            //dispatch_change_rockblock_downlink_period();
         }
         else if (sfr::rockblock::f_opcode == get_decimal_opcode(constants::rockblock::request_image_fragment))
         {
-            dispatch_request_image_fragment();
+            Serial.print("requesting image fragment");
+            //dispatch_request_image_fragment();
         }
         sfr::rockblock::waiting_command = false;
     }
@@ -24,6 +27,8 @@ void CommandMonitor::execute()
 
 void CommandMonitor::dispatch_change_mission_mode()
 {
+    Serial.print("new mission mode");
+    Serial.print(sfr::rockblock::f_arg_1);
     if (sfr::rockblock::f_arg_1 == get_decimal_arg(constants::rockblock::deployment))
     {
         MissionManager::transition_to_deployment();
@@ -68,13 +73,15 @@ void CommandMonitor::dispatch_change_rockblock_downlink_period()
 {
     if (sfr::rockblock::f_arg_1 < constants::rockblock::max_downlink_period && sfr::rockblock::f_arg_1 > constants::rockblock::min_downlink_period)
     {
+        Serial.print("New downlink period: ");
+        Serial.print(sfr::rockblock::f_arg_1);
         sfr::rockblock::downlink_period = sfr::rockblock::f_arg_1;
     }
 }
 
 uint16_t CommandMonitor::get_decimal_opcode(const uint8_t *hex_opcode_bytes)
 {
-    return (hex_opcode_bytes[1] << 8) | (hex_opcode_bytes[0]);
+    return (hex_opcode_bytes[1] << 8) | (hex_opcode_bytes[0]); 
 }
 
 uint32_t CommandMonitor::get_decimal_arg(const uint8_t *hex_arg_bytes)

@@ -11,7 +11,7 @@ namespace constants
         constexpr unsigned long ten_minutes = 10 * one_minute;
         constexpr unsigned long five_minutes = 5 * one_minute;
 
-        constexpr int control_cycle_time_ms = 100;
+        constexpr int control_cycle_time_ms = 10;
     }
     namespace photoresistor
     {

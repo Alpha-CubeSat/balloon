@@ -14,8 +14,11 @@ void CameraControlTask::execute()
         } else {
             Serial.println("Picture taken!");
             sfr::camera::jpglen = adaCam.frameLength();
+            sfr::rockblock::camera_num_fragments = sfr::camera::jpglen/constants::camera::content_length;
             Serial.println("Camera frame length: " + String(sfr::camera::jpglen));
+            Serial.println("Estimated frag count:" + String(sfr::rockblock::camera_num_fragments));
             if (sfr::camera::jpglen > 0){
+                
                 sfr::camera::take_photo = false;
                 sfr::camera::photo_taken_sd_failed = true;
             }    
@@ -76,8 +79,10 @@ void CameraControlTask::execute()
                 //Serial.print(buffer[i],HEX);
             #endif
         }
-
-        //Serial.println("");
+        Serial.print(sfr::camera::fragments_written);
+        Serial.print("/");
+        Serial.print(sfr::rockblock::camera_num_fragments);
+        Serial.println("");
         
         sfr::camera::jpglen -= bytesToRead;
         imgFile.close();

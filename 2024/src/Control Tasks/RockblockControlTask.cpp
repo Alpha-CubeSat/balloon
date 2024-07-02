@@ -155,16 +155,24 @@ Serial7.print("AT+CSQ\r");
 }
 
 void RockblockControlTask::dispatch_await_signal_strength(){
-    if(Serial7.read()==':'){
+    if (Serial7.read() == '+' &&
+        Serial7.read() == 'C' &&
+        Serial7.read() == 'S' &&
+        Serial7.read() == 'Q' &&
+        Serial7.read() == ':') {
         char signal = Serial7.read();
-        Serial.print("SAT INFO: signal level ");
-        Serial.println(signal);
-        if(signal =='3' || signal =='4' || signal =='5'){
+        #ifdef VERBOSE
+                Serial.print("SAT INFO: signal level ");
+                Serial.println(signal);
+        #endif
+
+        if (signal == '3' || signal == '4' || signal == '5') {
             transition_to(rockblock_mode_type::send_flow_control);
-        } else{
+        }
+        else{
             transition_to(rockblock_mode_type::send_signal_strength);
         }
-    }
+        }
 }
 
 void RockblockControlTask::dispatch_send_flow_control(){
@@ -175,11 +183,14 @@ void RockblockControlTask::dispatch_send_flow_control(){
     transition_to(rockblock_mode_type::await_flow_control);
 }
 
-void RockblockControlTask::dispatch_await_flow_control(){
-    if(Serial7.read()=='K'){
-        Serial.println("SAT INFO: ok");
-        transition_to(rockblock_mode_type::send_message_length);
-    } 
+void RockblockControlTask::dispatch_await_flow_control()
+{
+        if (get_OK()) {
+    #ifdef VERBOSE
+            Serial.println("SAT INFO: ok");
+    #endif
+            transition_to(rockblock_mode_type::send_message_length);
+        }
 }
 
 void RockblockControlTask::dispatch_send_message_length(){
@@ -190,11 +201,19 @@ void RockblockControlTask::dispatch_send_message_length(){
     transition_to(rockblock_mode_type::await_message_length);
 }
 
-void RockblockControlTask::dispatch_await_message_length(){
-    if(Serial7.read()=='Y'){
+void RockblockControlTask::dispatch_await_message_length()
+{
+    if (Serial7.read() == 'R' &&
+        Serial7.read() == 'E' &&
+        Serial7.read() == 'A' &&
+        Serial7.read() == 'D' &&
+        Serial7.read() == 'Y' &&
+        Serial7.read() == '\r') {
+#ifdef VERBOSE
         Serial.println("SAT INFO: ready");
+#endif
         transition_to(rockblock_mode_type::send_message);
-    } 
+    }
 }
 
 void RockblockControlTask::dispatch_send_message(){
@@ -390,7 +409,6 @@ void RockblockControlTask::dispatch_process_command(){
             sfr::rockblock::f_opcode = (sfr::rockblock::opcode[1] << 8) | (sfr::rockblock::opcode[0]);
             sfr::rockblock::f_arg_1  = (sfr::rockblock::arg_1[3] << 24) | (sfr::rockblock::arg_1[2] << 16) | (sfr::rockblock::arg_1[1] << 8) | (sfr::rockblock::arg_1[0]);
             sfr::rockblock::f_arg_2  = (sfr::rockblock::arg_2[3] << 24) | (sfr::rockblock::arg_2[2] << 16) | (sfr::rockblock::arg_2[1] << 8) | (sfr::rockblock::arg_2[0]);
-            
             sfr::rockblock::waiting_command = true;
         } else if(sfr::rockblock::opcode[0] == 'F' && sfr::rockblock::opcode[1] == 'L') {
             Serial.println("SAT INFO: flush confirmed");
@@ -481,11 +499,13 @@ bool RockblockControlTask::valid_command(){
     }
 
     bool non_std_cmd = (rockblock_downlink_period_opcode && arg_2) || 
-                      (request_image_fragment_opcode && arg_1) ||
-                      (burnwire_time_opcode) ||
-                      (burnwire_timeout_opcode);
+                      (request_image_fragment_opcode && arg_1);
+                    /*
+                      (burnwire_time_opcode) || TODO add in op codes for burnwire_time_opcode
+                      (burnwire_timeout_opcode)
+                      */
     if(non_std_cmd) {
-        Serial.println("SAT CMD: command validated");
+        Serial.println("SAT CMD: command validated - Nonstandard command");
         return true;
     }
 
@@ -512,7 +532,7 @@ bool RockblockControlTask::valid_command(){
         }
 
         if( (opcode && arg_1 && arg_2) ){
-            Serial.println("SAT CMD: command validated");
+            Serial.println("SAT CMD: command validated -Standard Command");
             return true;
         }
     }
@@ -531,4 +551,14 @@ void RockblockControlTask::downlinked_something(){
     }
     sfr::rockblock::downlink_camera = false;
     sfr::rockblock::num_downlinks = sfr::rockblock::num_downlinks + 1;
+}
+
+bool RockblockControlTask::get_OK()
+{
+    if (Serial7.read() == 'O' &&
+        Serial7.read() == 'K' &&
+        Serial7.read() == '\r') {
+        return true;
+    }
+    return false;
 }
