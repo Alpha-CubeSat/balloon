@@ -7,15 +7,8 @@ BurnwireControlTask::BurnwireControlTask()
 
 void BurnwireControlTask::execute()
 {
-    
-
-    digitalWrite(constants::burnwire::pin, HIGH);
-    delay(2000);
-    digitalWrite(constants::burnwire::pin, LOW);
-    delay(5000);
-    /*
     burnwire_mode_type mode = sfr::burnwire::mode;
-
+ 
     switch (mode)
     {
     case burnwire_mode_type::standby:
@@ -30,6 +23,7 @@ void BurnwireControlTask::execute()
         }
         break;
     }
+
     case burnwire_mode_type::burn:
     {
         if (sfr::mission::mode == mission_mode_type::deployment)
@@ -71,7 +65,6 @@ void BurnwireControlTask::execute()
         break;
     }
     }
-    */
 }
 
 void BurnwireControlTask::dispatch_burn()

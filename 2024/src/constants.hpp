@@ -6,7 +6,6 @@ namespace constants
     namespace time
     {
         constexpr unsigned long one_second = 1000;
-        constexpr int fail_safe_deploy = 5400000;
         constexpr unsigned long one_minute = 60 * one_second;
         constexpr unsigned long ten_minutes = 10 * one_minute;
         constexpr unsigned long five_minutes = 5 * one_minute;
@@ -24,6 +23,7 @@ namespace constants
         constexpr int burn_wait = 500;
         constexpr int max_attempts = 10;
         constexpr int burn_time = 200;
+        constexpr int fail_safe_deploy = time::one_second; 
     }
     namespace rockblock
     {

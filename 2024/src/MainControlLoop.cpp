@@ -22,15 +22,15 @@ void MainControlLoop::execute()
 {
     
     sfr::mission::cycle_start = millis();
-    camera_report_monitor.execute();
-    command_monitor.execute();
-    normal_report_monitor.execute();
+    //camera_report_monitor.execute();
+    //command_monitor.execute();
+    //normal_report_monitor.execute();
     photoresistor_monitor.execute();
-    temperature_monitor.execute();
-    gps_monitor.execute();
-    camera_control_task.execute();
-    rockblock_control_task.execute();
-    //burnwire_control_task.execute(); 
+    //temperature_monitor.execute();
+    //gps_monitor.execute();
+    //camera_control_task.execute();
+    //rockblock_control_task.execute();
+    burnwire_control_task.execute(); 
     mission_manager.execute();
     clock_manager.execute();
  

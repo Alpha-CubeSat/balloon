@@ -14,7 +14,7 @@ void MissionManager::execute() //Called in MainControlLoop.cpp as well.
     switch (mode) //Switch statement checks the value of mode and executes different code blocks based on its value. 
     {
     case mission_mode_type::standby: //If mode is standby, then execute dispatch_standby() etc etc. Dispatch functions make several checks to decide whether to transition to another mode. Once transitioned, dispatch_(that new state) will be called.
-        //dispatch_standby();
+        dispatch_standby();
         break;
     case mission_mode_type::high_altitude:
         dispatch_high_altitude(); 
@@ -30,7 +30,7 @@ void MissionManager::execute() //Called in MainControlLoop.cpp as well.
 
 void MissionManager::dispatch_standby()
 {
-    if ((millis() - sfr::time::start_time) >= constants::time::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
+    if ((millis() - sfr::time::start_time) >= constants::burnwire::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
     {
         transition_to_deployment();
     }
@@ -42,7 +42,7 @@ void MissionManager::dispatch_standby()
 
 void MissionManager::dispatch_high_altitude()
 {
-    if ((millis() - sfr::time::start_time) >= constants::time::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
+    if ((millis() - sfr::time::start_time) >= constants::burnwire::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
     {
         transition_to_deployment();
     }
