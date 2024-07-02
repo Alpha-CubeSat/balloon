@@ -74,7 +74,7 @@ void CommandMonitor::dispatch_change_rockblock_downlink_period()
 
 uint16_t CommandMonitor::get_decimal_opcode(const uint8_t *hex_opcode_bytes)
 {
-    return (hex_opcode_bytes[1] << 8) | (hex_opcode_bytes[0]);
+    return (hex_opcode_bytes[1] << 8) | (hex_opcode_bytes[0]); 
 }
 
 uint32_t CommandMonitor::get_decimal_arg(const uint8_t *hex_arg_bytes)

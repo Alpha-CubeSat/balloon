@@ -15,7 +15,7 @@ MainControlLoop::MainControlLoop():
     video_control_task(),
     gps_monitor()
 {
-    delay(1000);
+    delay(constants::time::control_cycle_time_ms); //CHANGED FROM 1000
 }
 
 void MainControlLoop::execute()
@@ -23,7 +23,7 @@ void MainControlLoop::execute()
     
     sfr::mission::cycle_start = millis();
     camera_report_monitor.execute();
-    // command_monitor.execute();
+    command_monitor.execute();
     normal_report_monitor.execute();
     photoresistor_monitor.execute();
     temperature_monitor.execute();
@@ -31,7 +31,6 @@ void MainControlLoop::execute()
     camera_control_task.execute();
     rockblock_control_task.execute();
     //burnwire_control_task.execute(); 
-
     mission_manager.execute();
     clock_manager.execute();
  

@@ -155,16 +155,24 @@ Serial7.print("AT+CSQ\r");
 }
 
 void RockblockControlTask::dispatch_await_signal_strength(){
-    if(Serial7.read()==':'){
+    if (Serial7.read() == '+' &&
+        Serial7.read() == 'C' &&
+        Serial7.read() == 'S' &&
+        Serial7.read() == 'Q' &&
+        Serial7.read() == ':') {
         char signal = Serial7.read();
-        Serial.print("SAT INFO: signal level ");
-        Serial.println(signal);
-        if(signal =='3' || signal =='4' || signal =='5'){
+        #ifdef VERBOSE
+                Serial.print("SAT INFO: signal level ");
+                Serial.println(signal);
+        #endif
+
+        if (signal == '3' || signal == '4' || signal == '5') {
             transition_to(rockblock_mode_type::send_flow_control);
-        } else{
+        }
+        else{
             transition_to(rockblock_mode_type::send_signal_strength);
         }
-    }
+        }
 }
 
 void RockblockControlTask::dispatch_send_flow_control(){
@@ -175,11 +183,14 @@ void RockblockControlTask::dispatch_send_flow_control(){
     transition_to(rockblock_mode_type::await_flow_control);
 }
 
-void RockblockControlTask::dispatch_await_flow_control(){
-    if(Serial7.read()=='K'){
-        Serial.println("SAT INFO: ok");
-        transition_to(rockblock_mode_type::send_message_length);
-    } 
+void RockblockControlTask::dispatch_await_flow_control()
+{
+        if (get_OK()) {
+    #ifdef VERBOSE
+            Serial.println("SAT INFO: ok");
+    #endif
+            transition_to(rockblock_mode_type::send_message_length);
+        }
 }
 
 void RockblockControlTask::dispatch_send_message_length(){
@@ -190,11 +201,19 @@ void RockblockControlTask::dispatch_send_message_length(){
     transition_to(rockblock_mode_type::await_message_length);
 }
 
-void RockblockControlTask::dispatch_await_message_length(){
-    if(Serial7.read()=='Y'){
+void RockblockControlTask::dispatch_await_message_length()
+{
+    if (Serial7.read() == 'R' &&
+        Serial7.read() == 'E' &&
+        Serial7.read() == 'A' &&
+        Serial7.read() == 'D' &&
+        Serial7.read() == 'Y' &&
+        Serial7.read() == '\r') {
+#ifdef VERBOSE
         Serial.println("SAT INFO: ready");
+#endif
         transition_to(rockblock_mode_type::send_message);
-    } 
+    }
 }
 
 void RockblockControlTask::dispatch_send_message(){
@@ -531,4 +550,14 @@ void RockblockControlTask::downlinked_something(){
     }
     sfr::rockblock::downlink_camera = false;
     sfr::rockblock::num_downlinks = sfr::rockblock::num_downlinks + 1;
+}
+
+bool RockblockControlTask::get_OK()
+{
+    if (Serial7.read() == 'O' &&
+        Serial7.read() == 'K' &&
+        Serial7.read() == '\r') {
+        return true;
+    }
+    return false;
 }

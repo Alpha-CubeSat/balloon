@@ -37,6 +37,7 @@ class RockblockControlTask {
         bool valid_command();      
         void timed_out();
         void downlinked_something();
+        bool get_OK();
 };
 
 #endif
