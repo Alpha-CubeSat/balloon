@@ -30,7 +30,7 @@ void MissionManager::execute() //Called in MainControlLoop.cpp as well.
 
 void MissionManager::dispatch_standby()
 {
-    if ((millis() - sfr::time::start_time) >= constants::time::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
+    if ((millis() - sfr::time::start_time) >= constants::burnwire::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
     {
         transition_to_deployment();
     }
@@ -42,7 +42,7 @@ void MissionManager::dispatch_standby()
 
 void MissionManager::dispatch_high_altitude()
 {
-    if ((millis() - sfr::time::start_time) >= constants::time::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
+    if ((millis() - sfr::time::start_time) >= constants::burnwire::fail_safe_deploy || sfr::gps::altitude_average > constants::gps::mand_deploy)
     {
         transition_to_deployment();
     }
