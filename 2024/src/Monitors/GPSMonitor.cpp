@@ -5,20 +5,10 @@ TinyGPS gps;
 
 GPSMonitor::GPSMonitor()
 {
-
-    //delay(1000);
 }
 
 void GPSMonitor::execute()
 {
-    //SoftwareSerial ss(constants::gps::RXPin, constants::gps::TXPin);
-        /*
-        while (Serial2.available())
-        {
-            //Serial.print("Serial2 Avaiable");
-        }
-        */
-
     for (unsigned long start = millis(); millis() - start < 1000;)
     {
         while (Serial2.available())
@@ -31,7 +21,6 @@ void GPSMonitor::execute()
 
     if (sfr::gps::new_data)
     {
-        //Serial.print("LOCK");
         float flat, flon;
         gps.f_get_position(&flat, &flon);
         sfr::gps::latitude = flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat;

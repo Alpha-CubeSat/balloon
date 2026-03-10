@@ -9,7 +9,7 @@ void RockblockControlTask::execute(){
     if (sfr::rockblock::sleep_mode) {
         transition_to(rockblock_mode_type::standby);
     }
-    //TODO: Add same_mode
+    //Serial.println((int)mode);
     switch(mode){
         case rockblock_mode_type::standby:
             dispatch_standby();
@@ -21,7 +21,6 @@ void RockblockControlTask::execute(){
             dispatch_await_at();
             break;
         case rockblock_mode_type::send_signal_strength:
-         Serial.println("sss");
             dispatch_send_signal_strength();
             break;
         case rockblock_mode_type::await_signal_strength:
@@ -161,6 +160,7 @@ void RockblockControlTask::dispatch_await_signal_strength(){
         Serial7.read() == 'Q' &&
         Serial7.read() == ':') {
         char signal = Serial7.read();
+        sfr::rockblock::signal_strength = signal;
         #ifdef VERBOSE
                 Serial.print("SAT INFO: signal level ");
                 Serial.println(signal);
@@ -459,6 +459,9 @@ void RockblockControlTask::dispatch_end_transmission(){
     sfr::rockblock::last_downlink = millis();
     sfr::rockblock::last_communication = millis();
     if(sfr::rockblock::downlink_period > constants::rockblock::min_sleep_period){
+        Serial.println(sfr::rockblock::downlink_period);
+        Serial.println(constants::rockblock::min_sleep_period);
+        Serial.println("Sleeping...");
         digitalWrite(constants::rockblock::sleep_pin, LOW);
     }
     downlinked_something();

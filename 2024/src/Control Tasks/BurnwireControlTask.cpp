@@ -7,13 +7,7 @@ BurnwireControlTask::BurnwireControlTask()
 
 void BurnwireControlTask::execute()
 {
-    
-
-    digitalWrite(constants::burnwire::pin, HIGH);
-    delay(2000);
-    digitalWrite(constants::burnwire::pin, LOW);
-    delay(5000);
-    /*
+ 
     burnwire_mode_type mode = sfr::burnwire::mode;
 
     switch (mode)
@@ -34,7 +28,7 @@ void BurnwireControlTask::execute()
     {
         if (sfr::mission::mode == mission_mode_type::deployment)
         {
-            if (millis() - sfr::burnwire::start_time >= (uint32_t)constants::burnwire::burn_time)
+            if (millis() - sfr::burnwire::start_time >= (uint32_t)constants::burnwire::burn_time_ms)
             {
                 sfr::burnwire::mode = burnwire_mode_type::delay;
                 digitalWrite(constants::burnwire::pin, LOW);
@@ -71,7 +65,6 @@ void BurnwireControlTask::execute()
         break;
     }
     }
-    */
 }
 
 void BurnwireControlTask::dispatch_burn()
@@ -86,6 +79,8 @@ void BurnwireControlTask::dispatch_burn()
     }
     else //toggles burnwire pin between high and low every other attempt.
     {
+        Serial.print("Burnwire Attempts: ");
+        Serial.println(sfr::burnwire::attempts);
         if (sfr::burnwire::attempts % 2 == 0)
         {
             digitalWrite(constants::burnwire::pin, HIGH);

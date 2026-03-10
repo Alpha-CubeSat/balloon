@@ -27,7 +27,7 @@ namespace sfr
     {
         bool photo_taken_sd_failed = false;
         bool take_photo = true;
-        bool turn_on = false;
+        bool turn_on = false; //change back to false
         bool turn_off = false;
         bool powered = false;
         uint8_t buffer[255] = {0};
@@ -52,6 +52,7 @@ namespace sfr
         int camera_commands[99][constants::rockblock::command_len] = {};
         int camera_max_fragments[99] = {};
         int camera_num_fragments = 0;
+        int signal_strength = 0;
         bool downlink_camera = false;
         bool sleep_mode = false;
         unsigned long last_downlink = 0; 

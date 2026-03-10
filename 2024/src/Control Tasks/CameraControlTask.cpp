@@ -8,7 +8,16 @@ CameraControlTask::CameraControlTask(): adaCam(&Serial6)
 
 void CameraControlTask::execute()
 {
-    if (sfr::camera::take_photo == true && sfr::camera::powered == true) {
+    if (sfr::camera::turn_on) {
+        if (adaCam.begin()) {
+            Serial.println("turned on camera");
+            adaCam.setImageSize(VC0706_160x120);
+            sfr::camera::powered = true;
+            sfr::camera::turn_on = false;
+        }
+    }
+
+    if (sfr::camera::take_photo && sfr::camera::powered) {
         if (!adaCam.takePicture()){
             Serial.println("Failed to snap!");
         } else {
@@ -25,7 +34,7 @@ void CameraControlTask::execute()
         }
     }
 
-    if(sfr::camera::photo_taken_sd_failed == true){
+    if(sfr::camera::photo_taken_sd_failed){
         if (!SD.begin(254)) {
             Serial.println("SD CARD FAILED");
         } else{
@@ -33,21 +42,7 @@ void CameraControlTask::execute()
         }
     }
         
-    if (sfr::camera::turn_on == true && sfr::camera::powered == false) {
-        if (adaCam.begin()) {
-            #ifdef VERBOSE
-            Serial.println("turned on camera");
-            #endif
-            adaCam.setImageSize(VC0706_160x120);
-            sfr::camera::powered = true;
-            sfr::camera::turn_on = false;
-        }
-        else{
-            Serial.println("Camera Disconnected");
-        }
-    }
-
-    if (sfr::camera::jpglen > 0 && sfr::camera::photo_taken_sd_failed == false) {
+    if (sfr::camera::jpglen > 0 && !sfr::camera::photo_taken_sd_failed) {
         filetocreate = "";
         if (sfr::camera::images_written < 10) {
             filetocreate += "0";

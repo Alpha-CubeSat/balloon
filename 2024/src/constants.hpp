@@ -10,13 +10,13 @@ namespace constants
         constexpr unsigned long five_minutes = 5 * one_minute;
         constexpr unsigned long ten_minutes = 10 * one_minute;
         constexpr unsigned long half_hour = 30 * one_minute;
-        constexpr unsigned long half_hour = 2 * half_hour;
+        constexpr unsigned long hour = 2 * half_hour;
 
-        constexpr int control_cycle_time_ms = 10;
+        constexpr int control_cycle_time_ms = 100;
     }
     namespace photoresistor
     {
-        constexpr int pin = 22;
+        constexpr int pin = A17; //changed from 22->41
         constexpr int light_val = 700; //increased light val for natural light enviornment, this value will need to be determined
     }
     namespace burnwire
@@ -24,8 +24,8 @@ namespace constants
         constexpr int pin = 30;
         constexpr int burn_wait = 500;
         constexpr int max_attempts = 10;
-        constexpr int burn_time = 200;
-        constexpr int fail_safe_deploy = 3*time::half_hour;
+        constexpr int burn_time_ms = 500;
+        constexpr int fail_safe_deploy = 10000*time::one_second; //CHANGED FOR TESTING //90 deploys after 90 minutes
     }
     namespace rockblock
     {
@@ -104,8 +104,8 @@ namespace constants
         constexpr int baud = 9600; 
         constexpr int TXPin = 8;
         constexpr int RXPin =7;
-        constexpr int mand_deploy = 28000;
-        constexpr int high_altitude = 20000;
+        constexpr int mand_deploy = 28000; // 91,863 ft
+        constexpr int high_altitude = 20000; //65616 ft
         const unsigned char SetCfgNav5[] = {0xB5, 0x62, 0x06, 0x24, 0x24, 0x00, 0x01, 0x01,
                                             0x06, 0x03, 0x00, 0x00, 0x00, 0x00, 0x10, 0x27,
                                             0x00, 0x00, 0x05, 0x00, 0xFA, 0x00, 0xFA, 0x00,
@@ -128,8 +128,8 @@ namespace constants
 
     }
     namespace temperature {
-        constexpr int pin1 = A16;
-        constexpr int pin2 = A17;
+        constexpr int pin1 = A16;  // external temp changed from A16(40)->22
+        constexpr int pin2 = A8;
         constexpr int min_temp_c = -100;
         constexpr int max_temp_c = 200;
         constexpr int min_temp_f = -148;
