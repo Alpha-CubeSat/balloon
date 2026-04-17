@@ -24,14 +24,14 @@ void MainControlLoop::execute()
     mission_manager.execute();
     clock_manager.execute();
  
-    //rockblock_control_task.execute();
+    rockblock_control_task.execute();
     camera_control_task.execute();
     //burnwire_control_task.execute();
     video_control_task.execute();
     
     gps_monitor.execute();
     photoresistor_monitor.execute();
-    camera_report_monitor.execute();
+    //camera_report_monitor.execute();
     temperature_monitor.execute();
     normal_report_monitor.execute();
     command_monitor.execute();
